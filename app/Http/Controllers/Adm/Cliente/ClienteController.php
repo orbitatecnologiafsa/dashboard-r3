@@ -29,7 +29,7 @@ class ClienteController extends Controller
 
     public function atualizar(ClienteRequest $req, $id)
     {
-        if ($this->admRepositorio->atualizarusUario($req->all(), $id)) {
+        if ($this->admRepositorio->atualizarUsuario($req->all(), $id)) {
             return redirect()->to("adm/cliente/detalhes/$id")->with('msg-success', 'Cliente atualizado com sucesso!');
         }
         return redirect()->back()->with('msg-error', 'Erro ao atualizar cliente!');
