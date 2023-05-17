@@ -7,6 +7,7 @@ use App\Models\Estoque;
 use App\Models\Loja;
 use Illuminate\Support\Facades\DB;
 use App\Models\Venda;
+use App\Models\Vendedor;
 use App\Repositorio\Util\HelperUtil;
 
 class DashboardRepositorio
@@ -221,5 +222,14 @@ class DashboardRepositorio
             ['valor' =>  'codfilial', 'campo' => 'Codigo filial','id' => 'codfilial'],
             ['valor' => 'nome_vendedor','campo' =>'Nome Vendedor','id' => 'nome_vendedor']
         ];
+    }
+
+    public function filtros_vendedor()
+    {
+
+        $select = new Vendedor();
+        $res = $select->all();
+
+        return $res;
     }
 }

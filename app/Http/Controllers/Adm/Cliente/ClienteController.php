@@ -27,9 +27,9 @@ class ClienteController extends Controller
         return view($this->path . 'cliente/cadastar');
     }
 
-    public function atualizar(ClienteRequest $req,$id)
+    public function atualizar(ClienteRequest $req, $id)
     {
-        if ($this->admRepositorio->atualizarusUario($req->all(),$id)) {
+        if ($this->admRepositorio->atualizarusUario($req->all(), $id)) {
             return redirect()->to("adm/cliente/detalhes/$id")->with('msg-success', 'Cliente atualizado com sucesso!');
         }
         return redirect()->back()->with('msg-error', 'Erro ao atualizar cliente!');
@@ -55,8 +55,17 @@ class ClienteController extends Controller
     public function listaLoja()
     {
 
-        return view($this->path . 'cliente/lista-loja', ['lojas' => $this->admRepositorio->listaLoja() ]);
+        return view($this->path . 'cliente/lista-loja', ['lojas' => $this->admRepositorio->listaLoja()]);
+    }
+    // deletarCliente
+
+    public function deletarCliente($id)
+    {
+        if ($this->admRepositorio->deletarCliente($id)) {
+            return redirect()->to("adm/cliente/lista")->with('msg-success', 'Cliente deletado com sucesso!');
+        }else{
+            return redirect()->back()->with('msg-error', 'Erro ao deletar cliente!');
+        }
 
     }
-
 }

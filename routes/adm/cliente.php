@@ -9,6 +9,6 @@ Route::middleware('is_admin')->controller(ClienteController::class)->prefix('adm
     Route::post('/cliente/cadastro', 'cadastrarPost')->name('adm-cadastro-cliente-post');
     Route::put('/cliente/atualizar/{id}', 'atualizar')->name('adm-atualizar-cliente-put');
     Route::get('/cliente/detalhes/{id}','detalhes')->name('adm-cliente-detalhes');
-
+    Route::get('/cliente/deletar/{id}', 'deletarCliente')->name('adm-delete-cliente');
     Route::get('/lista/loja','listaLoja')->name('adm-lista-loja');
 });

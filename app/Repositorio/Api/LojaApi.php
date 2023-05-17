@@ -54,6 +54,7 @@ class LojaApi
                     DB::update("update vendas set cnpj_loja =  ? where  cnpj_loja = ?", [$loja['cnpj_loja'], $select->cnpj_loja]);
                     DB::update("update caixas set cnpj_loja =  ? where  cnpj_loja = ?",  [$loja['cnpj_loja'], $select->cnpj_loja]);
                     DB::update("update estoques set cnpj_loja =  ? where  cnpj_loja =? ",  [$loja['cnpj_loja'], $select->cnpj_loja]);
+                    DB::update("update estoques set cnpj_loja =  ? where  cnpj_loja =? ",  [$loja['cnpj_loja'], $select->cnpj_loja]);
                     DB::statement('SET SQL_SAFE_UPDATES = 1;');
                     return response()->json(["sucess" => true, "atualizar_loja"  => "success", "valor_antigo" => $select, "valor_novo" => $loja, "id" => $select->id], 200, ['Content-Type' => "application/json", "Charset" => "utf-8"]);
                 }

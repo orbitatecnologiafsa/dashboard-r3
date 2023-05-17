@@ -83,12 +83,29 @@ class ClienteRepositorio
 
 
         if ($this->user->where('id', $id)->first()->updateOrFail($usuario)) {
-
             DB::statement('SET SQL_SAFE_UPDATES = 0;');
             DB::update("update vendas set cnpj_cliente =  ? where  cnpj_cliente = ?", [$usuario['cnpj'], $user->cnpj]);
             DB::update("update lojas set cnpj_cliente =  ? where  cnpj_cliente = ?", [$usuario['cnpj'], $user->cnpj]);
             DB::update("update caixas set cnpj_cliente =  ? where  cnpj_cliente = ?", [$usuario['cnpj'], $user->cnpj]);
             DB::update("update estoques set cnpj_cliente =  ? where  cnpj_cliente =? ", [$usuario['cnpj'], $user->cnpj]);
+            DB::update("update vendedores set cnpj_cliente =  ? where  cnpj_cliente =? ", [$usuario['cnpj'], $user->cnpj]);
+            DB::statement('SET SQL_SAFE_UPDATES = 1;');
+            return true;
+        }
+        return false;
+    }
+
+    public function deletarCliente($id)
+    {
+        $user = new User();
+        $select  = $user->where('id', $id)->get()->first();
+        if ($this->user->where('id', $id)->delete()) {
+            DB::statement('SET SQL_SAFE_UPDATES = 0;');
+            DB::update("delete from vendas  where  cnpj_cliente = ?", [$select->cnpj]);
+            DB::update("delete from lojas  where  cnpj_cliente = ?", [$select->cnpj]);
+            DB::update("delete from caixas  where  cnpj_cliente = ?", [$select->cnpj]);
+            DB::update("delete from estoques  where  cnpj_cliente =? ", [$select->cnpj]);
+            DB::update("delete from vendedores  where  cnpj_cliente =? ", [$select->cnpj]);
             DB::statement('SET SQL_SAFE_UPDATES = 1;');
             return true;
         }

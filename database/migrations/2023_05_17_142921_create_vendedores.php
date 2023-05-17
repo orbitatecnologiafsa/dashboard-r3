@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('cnpj_loja');
             $table->string('cnpj_cliente');
             $table->string('nome_vendedor');
+            $table->string('codigo_vendedor');
         });
     }
 

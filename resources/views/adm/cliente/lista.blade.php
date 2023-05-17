@@ -41,6 +41,7 @@
                                 {{-- <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                 Historico</th> --}}
                                 <th class="text-secondary opacity-7"></th>
+                                <th class="text-secondary opacity-7"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -87,6 +88,13 @@
                                             class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                                             data-original-title="Edit user">
                                             Detalhes
+                                        </a>
+                                    </td>
+                                    <td class="align-middle">
+                                        <a href="{{ route('adm-delete-cliente', $item->id) }}"
+                                            class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                                            data-original-title="Deletar user">
+                                            Deletar clienter
                                         </a>
                                     </td>
                                 </tr>

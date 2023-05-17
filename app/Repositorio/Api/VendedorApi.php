@@ -25,11 +25,11 @@ class VendedorApi{
             $cnpj_loja = '';
             $cnpj_cliente = '';
             foreach ($vendedores as $vendedor) {
-                $codigo = $vendedor['codigo'];
+                $codigo = $vendedor['codigo_vendedor'];
                 $cnpj_loja = $vendedor['cnpj_loja'];
                 $cnpj_cliente = $vendedor['cnpj_cliente'];
                 $dadosVendedor = [
-                    'codigo' => $codigo,
+                    'codigo_vendedor' => $codigo,
                     'nome_vendedor' => $vendedor['nome_vendedor'],
                     'cnpj_cliente' => $vendedor['cnpj_cliente'],
                     'cnpj_loja' => $vendedor['cnpj_loja'],
@@ -37,7 +37,7 @@ class VendedorApi{
                     'updated_at' => $vendedor['updated_at']
 
                 ];
-                if (Vendedor::updateOrInsert(['codigo' => $codigo,'cnpj_loja' => $cnpj_loja,'cnpj_cliente'=>$cnpj_cliente],$dadosVendedor) ){
+                if (Vendedor::updateOrInsert(['codigo_vendedor' => $codigo,'cnpj_loja' => $cnpj_loja,'cnpj_cliente'=>$cnpj_cliente],$dadosVendedor) ){
                     $insert = true;
                 }
             }
