@@ -99,6 +99,7 @@ class ClienteRepositorio
     {
         $user = new User();
         $select  = $user->where('id', $id)->get()->first();
+        
         if ($this->user->where('id', $id)->delete()) {
             DB::statement('SET SQL_SAFE_UPDATES = 0;');
             DB::update("delete from vendas  where  cnpj_cliente = ?", [$select->cnpj]);
