@@ -16,6 +16,5 @@ class Vendedor extends Model
         'cnpj_cliente',
         'nome_vendedor',
         'codigo_vendedor',
-        'id_cliente'
     ];
 }
