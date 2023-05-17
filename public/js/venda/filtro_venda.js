@@ -6,18 +6,15 @@ function filtro_vendas(url) {
                 campo,
                 valor
             }) => {
-                if(getParam('op_filtro_venda') == valor){
+                if (getParam('op_filtro_venda') == valor) {
                     $('#filto_vendas').append(`<option selected value='${valor}'>${campo}</option>`);
-                }else{
+                } else {
                     $('#filto_vendas').append(`<option value='${valor}'>${campo}</option>`);
                 }
-
             });
-
         })
     });
 }
-
 
 function getParam(param) {
     var url_string = window.location.href;
@@ -25,45 +22,49 @@ function getParam(param) {
     return url.searchParams.get(param); //pega o value
 }
 
-function alterarCampo() {
-    var campo = document.getElementById('campo').value;
-    var campoContainer = document.getElementById('campoContainer');
+function vendedores(url) {
+    $(document).ready(function () {
+        // Quando o valor do primeiro select mudar
+        $('#filto_vendas').change(function () {
+            var valorSelecionado = $(this).val();
 
-    if (campo === 'select') {
-        // Remover o campo de entrada
-        campoContainer.innerHTML = '';
+            // Verifica se o valor selecionado é igual a "opcao2"
+            if (valorSelecionado === 'nome_vendedor') {
+                // Substitui o campo input pelo campo select
+                var visivel = $('#campo_venda').is(':visible');
+                if (visivel) {
+                    $('#campo_venda').hide()
+                    $('#filtro_vendedor').remove();
+                    $('#select_venda_var').append(`<select class="form-control" name="op_filtro_vendedor"
+                    id="filtro_vendedor">
+                   </select>`)
+                    //  $('#select_venda_var').html('<select class="form-control" id="campoSelect">' + options + '</select>');
+                    $.get(url, function (data) {
+                        var val = data['filtro_venda']
+                        val.map(({
+                            campo,
+                            valor
+                        }) => {
+                            if (getParam('op_filtro_vendedor') == valor) {
+                                $('#filtro_vendedor').append(`<option selected  value='${valor}'>${campo}</option>`);
+                            } else {
+                                $('#filtro_vendedor').append(`<option  value='${valor}'>${campo}</option>`);
+                            }
 
-        // Criar um novo campo de seleção
-        var select = document.createElement('select');
-        select.id = 'campoSelect';
-        select.name = 'campoSelect';
+                        });
 
-        // Adicionar algumas opções
-        var option1 = document.createElement('option');
-        option1.value = 'opcao1';
-        option1.text = 'Opção 1';
-        select.appendChild(option1);
-         var option3 = document.createElement('option');
-        option1.value = 'opcao3';
-        option1.text = 'Opção 1';
-        select.appendChild(option3);
+                    });
+                    $('#select_venda_var').show();
+                }
 
-        var option2 = document.createElement('option');
-        option2.value = 'opcao2';
-        option2.text = 'Opção 2';
-        select.appendChild(option2);
-
-        campoContainer.appendChild(select);
-    } else {
-        // Remover o campo de seleção
-        campoContainer.innerHTML = '';
-
-        // Criar um novo campo de entrada
-        var input = document.createElement('input');
-        input.type = 'text';
-        input.id = 'campoInput';
-        input.name = 'campoInput';
-
-        campoContainer.appendChild(input);
-    }
+            } else {
+                // Substitui o campo select pelo campo input
+                var visivel = $('#select_venda_var').is(':visible');
+                if (visivel) {
+                    $('#campo_venda').show();
+                    $('#select_venda_var').hide();
+                }
+            }
+        });
+    });
 }

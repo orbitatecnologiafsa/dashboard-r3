@@ -212,14 +212,14 @@ class DashboardRepositorio
     public function filtros_vendas()
     {
         return [
-            ['valor' =>  'cfop', 'campo' => 'CFOP'],
-            ['valor' =>  'codcliente', 'campo' => 'Codigo cliente'],
-            ['valor' =>  'modelo_nf', 'campo' => 'Modelo de nota 65/55'],
-            ['valor' =>  'codcaixa', 'campo' => 'Codigo caixa'],
-            ['valor' =>  'codvendedor', 'campo' => 'Codigo vendedor'],
-            ['valor' =>  'codigo', 'campo' => 'Codigo sistema'],
-            ['valor' =>  'codfilial', 'campo' => 'Codigo filial'],
-            ['valor' => 'nome_vendedor','campo' =>'Nome Vendedor']
+            ['valor' =>  'cfop', 'campo' => 'CFOP','id' => 'cfop'],
+            ['valor' =>  'codcliente', 'campo' => 'Codigo cliente','id' => 'codcliente'],
+            ['valor' =>  'modelo_nf', 'campo' => 'Modelo de nota 65/55','id' => 'modelo_nf'],
+            ['valor' =>  'codcaixa', 'campo' => 'Codigo caixa','id' => 'codcaixa'],
+            ['valor' =>  'codvendedor', 'campo' => 'Codigo vendedor','id' => 'codvendedor'],
+            ['valor' =>  'codigo', 'campo' => 'Codigo sistema','id' => 'codigo'],
+            ['valor' =>  'codfilial', 'campo' => 'Codigo filial','id' => 'codfilial'],
+            ['valor' => 'nome_vendedor','campo' =>'Nome Vendedor','id' => 'nome_vendedor']
         ];
     }
 }

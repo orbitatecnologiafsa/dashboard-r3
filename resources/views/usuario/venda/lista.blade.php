@@ -78,10 +78,23 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
+                            <div class="form-group" >
                                 <label for="exampleFormControlInput1">Insira o valor de busca</label>
-                                <input type="text" class="form-control" name="filtro_vendas"
+
+                                <div id="campo_venda">
+                                    <input type="text" class="form-control" name="filtro_vendas"
                                     value="{{ request()->input('filtro_vendas') ?? old('filtro_vendas') }}" id="" placeholder="">
+                                </div>
+
+                                <div id="select_venda">
+                                    <div id="select_venda_var">
+                                        {{-- <select class="form-control" name="op_filtro_vendedor"
+                                        id="filtro_vendedor">
+
+                                       </select> --}}
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -210,7 +223,7 @@
 <script src="{{ asset('js/venda/filtro_venda.js') }}"></script>
 <script>
      filtro_vendas("{{ route('filto-vendas') }}")
+     vendedores("{{ route('filto-vendas') }}")
 
-     
 </script>
 @endpush
