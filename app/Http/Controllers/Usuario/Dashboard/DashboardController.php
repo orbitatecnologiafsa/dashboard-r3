@@ -73,7 +73,8 @@ class DashboardController extends Controller
     public function filtro_venda()
     {
         return response([
-            'filtro_venda' => $this->dashboardRepositorio->filtros_vendas()
+            'filtro_venda' => $this->dashboardRepositorio->filtros_vendas(),
+            'filtro_vendedor'=> $this->dashboardRepositorio->filtros_vendedor()
         ]);
     }
 }

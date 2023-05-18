@@ -23,7 +23,6 @@ class VendaController extends Controller
     public function lista()
     {
 
-
         return view($this->path . '.lista', ['venda' => $this->vendaRepositorio->lista()]);
     }
 
@@ -46,7 +45,8 @@ class VendaController extends Controller
 
     public function buscaFiltro(Request $req)
     {
-        if ($busca = $this->vendaRepositorio->buscarVendaFiltro($req->input('op_filtro_venda'), $req->input('filtro_vendas'))) {
+
+        if ($busca = $this->vendaRepositorio->buscarVendaFiltro($req->all())) {
             return view($this->path . '.lista', ['venda' => $busca]);
         }
         return redirect()->route('user-lista-vendas')->with('msg-error', 'Não foram encontrados registros!')->withInput();

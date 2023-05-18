@@ -19,7 +19,7 @@ class DashboardRepositorio
     protected $loja;
 
 
-    public function __construct($cnpj_cliente = '',$cnpj_loja = '')
+    public function __construct($cnpj_cliente = '', $cnpj_loja = '')
     {
         $this->estoque = new Estoque();
         $this->caixa = new Caixa();
@@ -44,32 +44,32 @@ class DashboardRepositorio
     public function contadorEstoque()
     {
 
-        return $this->estoque->where('cnpj_cliente',HelperUtil::userInformation())->where('cnpj_loja',HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->sum('precovenda');
+        return $this->estoque->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->sum('precovenda');
     }
     public function contadorVendas()
     {
 
-        return $this->venda->whereDay('data', '=', date('d'))->whewYear('data', '=', date('Y'))->where('cnpj_cliente',HelperUtil::userInformation())->where('cnpj_loja',HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->sum('id');
+        return $this->venda->whereDay('data', '=', date('d'))->whewYear('data', '=', date('Y'))->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->sum('id');
     }
 
     public function contadorCaixa()
     {
 
-        return $this->caixa->whereYear('data', date('Y'))->where('cnpj_cliente',HelperUtil::userInformation())->where('cnpj_loja',HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->sum('valor');
+        return $this->caixa->whereYear('data', date('Y'))->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->sum('valor');
     }
 
     public function contadorCaixaAtual()
     {
 
         $data =  date('Y-m-d');
-        return $this->venda->whereBetween('data', ["{$data} 00:00:00", "{$data} 23:00:00"])->where('cnpj_cliente',HelperUtil::userInformation())->where('cnpj_loja',HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->sum('meio_dinheiro');
+        return $this->venda->whereBetween('data', ["{$data} 00:00:00", "{$data} 23:00:00"])->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->sum('meio_dinheiro');
     }
 
     public function contadorValorTotalDiario()
     {
 
         $data =  date('Y-m-d');
-        return $this->venda->whereBetween('data', ["{$data} 00:00:00", "{$data} 23:00:00"])->where('cnpj_cliente',HelperUtil::userInformation())->where('cnpj_loja',HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->sum('total_nota');
+        return $this->venda->whereBetween('data', ["{$data} 00:00:00", "{$data} 23:00:00"])->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->sum('total_nota');
     }
 
     public function contadorTotalVendas()
@@ -141,9 +141,9 @@ class DashboardRepositorio
     public function ultimaAtualizacao()
     {
 
-        $busca = $this->db::select('select created_at as data from vendas  where cnpj_loja = ? and cnpj_cliente  = ? limit 1' ,[HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja,HelperUtil::userInformation()]);
+        $busca = $this->db::select('select created_at as data from vendas  where cnpj_loja = ? and cnpj_cliente  = ? limit 1', [HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja, HelperUtil::userInformation()]);
         if (empty($busca)) {
-            $busca = $this->db::select('select created_at as data from estoques where cnpj_loja = ? and cnpj_cliente  = ? limit 1' ,[HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja,HelperUtil::userInformation()]);
+            $busca = $this->db::select('select created_at as data from estoques where cnpj_loja = ? and cnpj_cliente  = ? limit 1', [HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja, HelperUtil::userInformation()]);
         }
         return  isset($busca[0]->data) ? $busca[0]->data : 0;
     }
@@ -189,7 +189,7 @@ class DashboardRepositorio
         $data =  date('Y-m-d');
         $busca = (object) [];
 
-        $busca = $this->venda->whereBetween('data', ["{$data} 00:00:00", "{$data} 23:00:00"])->where('cnpj_cliente',HelperUtil::userInformation())->where('cnpj_loja',HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->where('total_nota','!=',0)->limit(10)->orderBy('data', 'desc')->get();
+        $busca = $this->venda->whereBetween('data', ["{$data} 00:00:00", "{$data} 23:00:00"])->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->where('total_nota', '!=', 0)->limit(10)->orderBy('data', 'desc')->get();
 
         return  isset($busca) > 0 ? (object) $busca : $busca;
     }
@@ -213,14 +213,14 @@ class DashboardRepositorio
     public function filtros_vendas()
     {
         return [
-            ['valor' =>  'cfop', 'campo' => 'CFOP','id' => 'cfop'],
-            ['valor' =>  'codcliente', 'campo' => 'Codigo cliente','id' => 'codcliente'],
-            ['valor' =>  'modelo_nf', 'campo' => 'Modelo de nota 65/55','id' => 'modelo_nf'],
-            ['valor' =>  'codcaixa', 'campo' => 'Codigo caixa','id' => 'codcaixa'],
-            ['valor' =>  'codvendedor', 'campo' => 'Codigo vendedor','id' => 'codvendedor'],
-            ['valor' =>  'codigo', 'campo' => 'Codigo sistema','id' => 'codigo'],
-            ['valor' =>  'codfilial', 'campo' => 'Codigo filial','id' => 'codfilial'],
-            ['valor' => 'nome_vendedor','campo' =>'Nome Vendedor','id' => 'nome_vendedor']
+            ['valor' =>  'cfop', 'campo' => 'CFOP', 'id' => 'cfop'],
+            ['valor' =>  'codcliente', 'campo' => 'Codigo cliente', 'id' => 'codcliente'],
+            ['valor' =>  'modelo_nf', 'campo' => 'Modelo de nota 65/55', 'id' => 'modelo_nf'],
+            ['valor' =>  'codcaixa', 'campo' => 'Codigo caixa', 'id' => 'codcaixa'],
+            ['valor' =>  'codvendedor', 'campo' => 'Codigo vendedor', 'id' => 'codvendedor'],
+            ['valor' =>  'codigo', 'campo' => 'Codigo sistema', 'id' => 'codigo'],
+            ['valor' =>  'codfilial', 'campo' => 'Codigo filial', 'id' => 'codfilial'],
+            ['valor' => 'nome_vendedor', 'campo' => 'Nome Vendedor', 'id' => 'nome_vendedor']
         ];
     }
 
@@ -228,7 +228,10 @@ class DashboardRepositorio
     {
 
         $select = new Vendedor();
-        $res = $select->all();
+        $res = $select->all([
+            'nome_vendedor',
+            'codigo_vendedor'
+        ]);
 
         return $res;
     }

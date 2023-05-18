@@ -15,7 +15,7 @@
         @include('usuario.partial.nav_info_venda')
 
         @if (count($venda) > 0)
-            <form method="get" action="{{ route('user-busca-venda') }}">
+            {{-- <form method="get" action="{{ route('user-busca-venda') }}">
                 <div class="card" style="margin-top: 100px;">
                     <div class="card-header pb-0 p-3">
                         <div class="d-flex justify-content-between">
@@ -57,13 +57,41 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            </form> --}}
 
             <form action="{{ route('user-filtro-vendas') }}" method="get">
-                <div class="card" style="margin-top: 10px;">
+                <div class="card" style="margin-top: 110px;">
                     <div class="card-header pb-0 p-3">
                         <div class="d-flex justify-content-between">
-                            <h6 class="mb-2">Buscar venda com filtro</h6>
+                            <h6 class="mb-2">Buscar venda</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-5 pb-0 p-3">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    Inicio
+                                    <input class="form-control form-control-alternative" type="date" name="data_inicio"
+                                        value="{{ request()->input('data_inicio') ?? old('data_inicio') }}"
+                                        id="example-date-input">
+                                    @error('data_inicio')
+                                        <div class="error" style="color:red">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    Fim
+
+                                    <input class="form-control form-control-alternative" type="date" name="data_fim"
+                                        value="{{ request()->input('data_fim') ?? old('data_fim') }}"
+                                        id="example-date-input">
+                                    @error('data_fim')
+                                        <div class="error " style="color:red">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row col-md-7 pb-0 p-3">
@@ -71,27 +99,27 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleFormControlSelect2">Selecione um filtro</label>
-                                <select class="form-control" name="op_filtro_venda"
-                                 id="filto_vendas">
+                                <select class="form-control" name="op_filtro_venda" id="filtro_vendas">
 
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group" >
+                            <div class="form-group">
                                 <label for="exampleFormControlInput1">Insira o valor de busca</label>
 
                                 <div id="campo_venda">
                                     <input type="text" class="form-control" name="filtro_vendas"
-                                    value="{{ request()->input('filtro_vendas') ?? old('filtro_vendas') }}" id="" placeholder="">
+                                        value="{{ request()->input('filtro_vendas') ?? old('filtro_vendas') }}"
+                                        id="" placeholder="">
                                 </div>
 
                                 <div id="select_venda">
                                     <div id="select_venda_var">
-                                        {{-- <select class="form-control" name="op_filtro_vendedor"
+                                        <select class="form-control" name="op_filtro_vendedor"
                                         id="filtro_vendedor">
-
-                                       </select> --}}
+                                        <option  value='' selected>Selecione</option>
+                                       </select>
                                     </div>
                                 </div>
 
@@ -198,17 +226,11 @@
             </table>
         </div>
 
-        @if (request()->input('data_inicio') != '' || request()->input('data_fim') != '')
-            <div class="d-flex me-2 justify-content-center mt-5">
-                {{-- {!! $caixa->links() !!} --}}
-                {{ $venda->appends(['data_inicio' => request()->input('data_inicio'), 'data_fim' => request()->input('data_fim')])->links() }}
-            </div>
-        @else
-            <div class="d-flex me-2 justify-content-center mt-5">
-                {{-- {!! $caixa->links() !!} --}}
-                {{ $venda->appends(['op_filtro_venda' => request()->input('op_filtro_venda'), 'filtro_vendas' => request()->input('filtro_vendas')])->links() }}
-            </div>
-        @endif
+        <div class="d-flex me-2 justify-content-center mt-5">
+
+            {{ $venda->appends(['data_inicio' => request()->input('data_inicio'), 'data_fim' => request()->input('data_fim'),'op_filtro_venda'=> request()->input('op_filtro_venda'),'filtro_vendas' => request()->input('filtro_vendas'),'op_filtro_vendedor'=>request()->input('op_filtro_vendedor')])->links() }}
+        </div>
+
     </div>
 @else
     <p style="margin-top:200px;" class="text-center justfy-content-center">Não existem regitros para serem
@@ -220,10 +242,10 @@
 
 @endsection
 @push('javascript')
-<script src="{{ asset('js/venda/filtro_venda.js') }}"></script>
-<script>
-     filtro_vendas("{{ route('filto-vendas') }}")
-     vendedores("{{ route('filto-vendas') }}")
-
-</script>
+    <script src="{{ asset('js/venda/filtro_venda.js') }}"></script>
+    <script>
+        filtro_vendas("{{ route('filto-vendas') }}")
+        vendedores("{{ route('filto-vendas') }}")
+        mostrarOcultar()
+    </script>
 @endpush
