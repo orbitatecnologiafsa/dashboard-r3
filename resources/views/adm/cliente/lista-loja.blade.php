@@ -19,10 +19,39 @@
 
 
             @if (count($lojas) > 0)
+                <form method="get" action="{{ route('adm-busca-loja')}}">
+                    <div class="card" style="margin-top: 100px;">
+                        <div class="card-header pb-0 p-3">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="mb-2">Buscar loja</h6>
+                            </div>
+                        </div>
+                        <div class="col-md-5 pb-0 p-3">
+                            <div class="form-group">
+                                <div class="input-group input-group-alternative mb-3">
+                                    <input class="form-control form-control-alternative" name="busca_loja"
+                                        value="{{ request()->input('busca_loja') ?? old('busca_loja') }}"
+                                        placeholder="Nome do cliente ou cnpj ou cnpj loja" type="text">
+                                </div>
+                            </div>
+                            @error('busca_loja')
+                                <div class="error " style="color:red">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-5 pb-0 p-3 me-2">
+                            <div class="form-group">
+                                <button class=" btn btn-primary  active">Buscar</button>
+                                <a href="{{ route('adm-lista-cliente') }}" class="btn btn-warning  active">
+                                    Atualizar lista</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
                 <div class="card" style="margin-top: 100px;">
                     <div class="card-header pb-0 p-3">
                         <div class="d-flex justify-content-between">
-                            <h6 class="mb-2">Lista de usuarios</h6>
+                            <h6 class="mb-2">Lista de lojas</h6>
                         </div>
                     </div>
                     <div class="table-responsive">

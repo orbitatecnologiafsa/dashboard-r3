@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Adm\Cliente;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Adm\ClienteRequest;
 use App\Repositorio\Adm\ClienteRepositorio;
-
+use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
@@ -63,9 +63,19 @@ class ClienteController extends Controller
     {
         if ($this->admRepositorio->deletarCliente($id)) {
             return redirect()->to("adm/cliente/lista")->with('msg-success', 'Cliente deletado com sucesso!');
-        }else{
+        } else {
             return redirect()->back()->with('msg-error', 'Erro ao deletar cliente!');
         }
+    }
 
+    public function buscaLoja(Request $req)
+    {
+
+        if (count($loja = $this->admRepositorio->buscaLoja($req->input('busca_loja')) ) >0) {
+          
+            return view($this->path . 'cliente/lista-loja', ['lojas' => $loja]);
+        } else {
+            return redirect()->back()->with('msg-error', 'Loja não encontrada!');
+        }
     }
 }

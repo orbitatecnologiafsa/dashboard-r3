@@ -11,4 +11,5 @@ Route::middleware('is_admin')->controller(ClienteController::class)->prefix('adm
     Route::get('/cliente/detalhes/{id}','detalhes')->name('adm-cliente-detalhes');
     Route::get('/cliente/deletar/{id}', 'deletarCliente')->name('adm-delete-cliente');
     Route::get('/lista/loja','listaLoja')->name('adm-lista-loja');
+    Route::get('/busca/loja','buscaLoja')->name('adm-busca-loja');
 });

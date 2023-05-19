@@ -41,8 +41,6 @@ class ClienteRepositorio
     public function listaLoja()
     {
 
-
-
         if ($loja = $this->loja->join('users', 'users.cnpj', 'lojas.cnpj_cliente', 'users.cnpj')
             ->select(
                 'lojas.id as loja_id',
@@ -111,5 +109,29 @@ class ClienteRepositorio
             return true;
         }
         return false;
+    }
+
+    public function buscaLoja($busca)
+    {
+      if($loja = $this->loja->join('users', 'users.cnpj', 'lojas.cnpj_cliente', 'users.cnpj')
+      ->select(
+          'lojas.id as loja_id',
+          'lojas.nome_loja as nome_loja',
+          'lojas.cnpj_loja as cnpj_loja',
+          'lojas.cnpj_cliente as cnpj_cliente',
+          'lojas.id_cliente as id_cliente',
+          'users.id as u_id_cli',
+          'users.nome_filial as u_nome_filial',
+          'users.cnpj as u_cnpj'
+      )
+        ->where('lojas.nome_loja','LIKE',"%$busca%")->orWhere('lojas.cnpj_loja',$busca)->orWhere('lojas.cnpj_cliente',$busca)
+        ->orWhere('users.nome_filial','LIKE',"%$busca%")
+        
+        ->paginate(6)
+      ){
+
+        return $loja;
+      }
+      return [];
     }
 }
