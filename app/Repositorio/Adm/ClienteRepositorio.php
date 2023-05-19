@@ -68,6 +68,16 @@ class ClienteRepositorio
         return [];
     }
 
+
+    public function buscarCliente($campo)
+    {
+
+        if ($user = $this->user->where('nome_filial','LIKE', "%$campo%")->orWhere('cnpj',"%$campo%")->paginate(6)) {
+           
+            return $user;
+        }
+        return [];
+    }
     public function atualizarUsuario($usuario, $id)
     {
         $user = $this->detalhesUsuario($id);
@@ -126,7 +136,7 @@ class ClienteRepositorio
       )
         ->where('lojas.nome_loja','LIKE',"%$busca%")->orWhere('lojas.cnpj_loja',$busca)->orWhere('lojas.cnpj_cliente',$busca)
         ->orWhere('users.nome_filial','LIKE',"%$busca%")
-        
+
         ->paginate(6)
       ){
 

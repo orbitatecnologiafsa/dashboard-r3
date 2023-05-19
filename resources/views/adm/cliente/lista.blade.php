@@ -19,7 +19,7 @@
 
 
             @if (count($users) > 0)
-                {{-- <form method="get" action=>
+                <form method="get" action="{{ route('adm-busca-cliente') }}">
                     <div class="card" style="margin-top: 100px;">
                         <div class="card-header pb-0 p-3">
                             <div class="d-flex justify-content-between">
@@ -48,7 +48,7 @@
                             </div>
                         </div>
                     </div>
-                </form> --}}
+                </form>
                 <div class="card" style="margin-top: 50px;">
                     <div class="card-header pb-0 p-3">
                         <div class="d-flex justify-content-between">

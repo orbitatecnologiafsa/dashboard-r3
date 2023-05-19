@@ -6,7 +6,7 @@ namespace App\Repositorio\Usuario\Venda;
 
 use App\Models\Venda;
 use App\Models\Vendedor;
-use App\Repositorio\Database\DatabaseRepositorio;
+
 use App\Repositorio\Util\HelperUtil;
 use Illuminate\Support\Facades\DB;
 
@@ -62,7 +62,7 @@ class VendaRepositorio
         $dados = (object) $campos;
         switch ($dados) {
             case !empty($dados->data_inicio) && !empty($dados->data_fim) && empty($dados->filtro_vendas) && !isset($dados->op_filtro_vendedor):
-                dd('aqui');
+
                 $busca = $this->venda->whereBetween('data', [$dados->data_inicio . ' 00:00:00', $dados->data_fim . ' 23:00:00'])
                     ->where('cnpj_cliente', HelperUtil::userInformation())
                     ->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)

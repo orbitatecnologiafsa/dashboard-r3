@@ -7,6 +7,7 @@ use App\Http\Requests\Adm\LoginRequest;
 use App\Repositorio\Adm\LoginRepositorio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -39,6 +40,9 @@ class LoginController extends Controller
     {
         Auth::guard('admin')->logout();
 
+
+        Session::flush();
+        request()->session()->regenerate(true);
         return redirect()->to('adm/login');
     }
 }

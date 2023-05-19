@@ -8,6 +8,7 @@ use App\Http\Requests\Login\LoginRequest;
 use App\Repositorio\Login\LoginRepositorio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -34,9 +35,9 @@ class LoginController extends Controller
 
     public function logout()
     {
-
         Auth::logout();
-
+        Session::flush();
+        request()->session()->regenerate(true);
         return redirect()->route('login');
     }
 }
