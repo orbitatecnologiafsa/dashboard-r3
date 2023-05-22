@@ -125,7 +125,7 @@
                                             <a href="{{ route('adm-delete-cliente', $item->id) }}"
                                                 class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                                                 data-original-title="Deletar user">
-                                                Deletar clienter
+                                                Deletar cliente
                                             </a>
                                         </td>
                                     </tr>
