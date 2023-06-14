@@ -20,7 +20,9 @@ use App\Http\Controllers\ClienteApi\CaixaController;
 use App\Http\Controllers\ClienteApi\EstoqueController;
 use App\Http\Controllers\ClienteApi\LojaController;
 use App\Http\Controllers\ClienteApi\UsuarioController;
+use App\Http\Controllers\ClienteApi\VendaAnoController;
 use App\Http\Controllers\ClienteApi\VendaController;
+use App\Http\Controllers\ClienteApi\VendaDiaController;
 use App\Http\Controllers\ClienteApi\VendedorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -82,6 +84,14 @@ Route::middleware('is_cliente_api')->prefix('auth')->controller(EstoqueControlle
 });
 Route::middleware('is_cliente_api')->prefix('auth')->controller(CaixaController::class)->group(function () {
     Route::post('/cadastro/caixa', 'cadastrar');
+});
+
+Route::middleware('is_cliente_api')->prefix('auth')->controller(VendaAnoController::class)->group(function () {
+    Route::post('/cadastro/venda-ano', 'cadastrar');
+});
+
+Route::middleware('is_cliente_api')->prefix('auth')->controller(VendaDiaController::class)->group(function () {
+    Route::post('/cadastro/venda-dia', 'cadastrar');
 });
 
 Route::middleware('is_cliente_api')->prefix('auth')->controller(VendedorController::class)->group(function () {
