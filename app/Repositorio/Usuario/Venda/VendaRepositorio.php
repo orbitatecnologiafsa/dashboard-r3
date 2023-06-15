@@ -106,8 +106,8 @@ class VendaRepositorio
                     ->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)
                     ->where('total_nota', '!=', 0)
                     ->sum('total_nota');
-                    $res = ['busca' => $busca, 'total_periodo' => $total];
-                    return  count($busca) > 0 ? $res :  false;
+                $res = ['busca' => $busca, 'total_periodo' => $total];
+                return  count($busca) > 0 ? $res :  false;
                 break;
             case empty($dados->data_inicio) && empty($dados->data_fim) && !isset($dados->op_filtro_vendedor) && !empty($dados->filtro_vendas):
 
@@ -117,10 +117,10 @@ class VendaRepositorio
                     ->where('total_nota', '!=', 0)
                     ->paginate(9);
                 $total = $this->venda->where("{$dados->op_filtro_venda}", 'LIKE', '%' . $dados->filtro_vendas . '%')
-                ->where('cnpj_cliente', HelperUtil::userInformation())
-                ->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)
-                ->where('total_nota', '!=', 0)
-                ->sum('total_nota');
+                    ->where('cnpj_cliente', HelperUtil::userInformation())
+                    ->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)
+                    ->where('total_nota', '!=', 0)
+                    ->sum('total_nota');
                 $res = ['busca' => $busca, 'total_periodo' => $total];
                 return  count($busca) > 0 ? $res :  false;
                 break;
@@ -131,10 +131,10 @@ class VendaRepositorio
                     ->where('total_nota', '!=', 0)
                     ->paginate(9);
                 $total = $this->venda->where("codvendedor", 'LIKE', '%' . $dados->op_filtro_vendedor . '%')
-                ->where('cnpj_cliente', HelperUtil::userInformation())
-                ->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)
-                ->where('total_nota', '!=', 0)
-                ->sum('total_nota');
+                    ->where('cnpj_cliente', HelperUtil::userInformation())
+                    ->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)
+                    ->where('total_nota', '!=', 0)
+                    ->sum('total_nota');
                 $res = ['busca' => $busca, 'total_periodo' => $total];
                 return  count($busca) > 0 ? $res :  false;
                 break;
