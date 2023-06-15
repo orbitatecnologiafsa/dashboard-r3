@@ -215,8 +215,7 @@ class DashboardRepositorio
         $data =  date('Y-m-d');
         $busca = (object) [];
 
-        $busca = $this->produtoDia->whereBetween('data', ["{$data} 00:00:00", "{$data} 23:00:00"])->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->where('total_vendido', '!=', 0)->limit(10)->orderBy('total_vendido', 'desc')->get();
-
+        $busca = $this->produtoDia->whereDate('data', $data)->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->where('total_vendido', '!=', 0)->limit(10)->orderBy('total_vendido', 'desc')->get();
         return  isset($busca) > 0 ? (object) $busca : $busca;
     }
 

@@ -19,7 +19,6 @@ class VendaDia extends Model
         'codnota',
         'ano',
         'valor_total',
-        'valor_vendido',
         'data',
         'total_vendido',
         'estoque',
