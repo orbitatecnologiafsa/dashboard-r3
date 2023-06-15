@@ -52,20 +52,25 @@
                         <div class="spinner-border tetx-white" role="status">
                             <span class="visually-hidden">Loading...</span>
                         </div>
-                    </span>
-                </div>
-            </li>
-
-            <li class="nav-item dropdown pe-2 d-flex align-items-center">
-                <div href="javascript:;" style="cursor: default;" class="nav-link text-white p-0"
-                    id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    </span><br>
                     CNPJ : <span id="cnpj-loja">
-                        <div class="spinner-border" role="status">
+                        <div class="spinner-border tetx-white" role="status">
                             <span class="visually-hidden">Loading...</span>
                         </div>
                     </span>
                 </div>
             </li>
+
+            {{-- <li class="nav-item dropdown pe-2 d-flex align-items-center">
+                <div href="javascript:;" style="cursor: default;" class="nav-link text-white p-0"
+                    id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    CNPJ : <span id="cnpj-loj">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </span>
+                </div>
+            </li> --}}
 
 
 
