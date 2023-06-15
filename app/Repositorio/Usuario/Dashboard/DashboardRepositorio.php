@@ -7,6 +7,8 @@ use App\Models\Estoque;
 use App\Models\Loja;
 use Illuminate\Support\Facades\DB;
 use App\Models\Venda;
+use App\Models\VendaAno;
+use App\Models\VendaDia;
 use App\Models\Vendedor;
 use App\Repositorio\Util\HelperUtil;
 
@@ -17,7 +19,8 @@ class DashboardRepositorio
     protected $venda;
     protected $db;
     protected $loja;
-
+    protected $produtoAno;
+    protected $produtoDia;
 
     public function __construct($cnpj_cliente = '', $cnpj_loja = '')
     {
@@ -26,6 +29,8 @@ class DashboardRepositorio
         $this->venda = new Venda();
         $this->db = new DB();
         $this->loja = new Loja();
+        $this->produtoAno = new VendaAno();
+        $this->produtoDia = new VendaDia();
     }
 
 
@@ -49,13 +54,13 @@ class DashboardRepositorio
     public function contadorVendas()
     {
 
-        return $this->venda->whereDay('data', '=', date('d'))->whewYear('data', '=', date('Y'))->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->sum('id');
+        return $this->venda->whereDay('data', '=', date('d'))->wherewYear('data', '=', date('Y'))->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->sum('id');
     }
 
     public function contadorCaixa()
     {
 
-        return $this->caixa->whereYear('data', date('Y'))->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->sum('valor');
+        return $this->caixa->whereYear('data', date('Y'))->whereMonth('data',date('m'))->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->sum('valor');
     }
 
     public function contadorCaixaAtual()
@@ -194,6 +199,27 @@ class DashboardRepositorio
         return  isset($busca) > 0 ? (object) $busca : $busca;
     }
 
+    public function topDezProdutoAno()
+    {
+        $data =  date('Y');
+        // $data = '2022';
+        $busca = (object) [];
+
+        $busca = $this->produtoAno->where('ano', $data)->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->where('total_vendido', '!=', 0)->limit(10)->orderBy('total_vendido', 'desc')->get();
+
+        return  isset($busca) > 0 ? (object) $busca : $busca;
+    }
+
+    public function topDezProdutoDia()
+    {
+        $data =  date('Y-m-d');
+        $busca = (object) [];
+
+        $busca = $this->produtoDia->whereBetween('data', ["{$data} 00:00:00", "{$data} 23:00:00"])->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->where('total_vendido', '!=', 0)->limit(10)->orderBy('total_vendido', 'desc')->get();
+
+        return  isset($busca) > 0 ? (object) $busca : $busca;
+    }
+
     public function formasPagamentoDiario()
     {
         $data =  date('Y-m-d');
@@ -228,7 +254,7 @@ class DashboardRepositorio
     {
 
         $select = new Vendedor();
-        $res = $select->all([
+        $res = $select->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->get([
             'nome_vendedor',
             'codigo_vendedor'
         ]);

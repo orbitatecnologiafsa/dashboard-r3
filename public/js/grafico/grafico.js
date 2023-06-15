@@ -105,7 +105,7 @@ function graficoLinha(url = '', id, dados = '', label, tipo = '', prefix = '') {
 
 }
 
-function tabela(data) {
+function tabelaVendasDiaria(data) {
 
     if (data.length == 0) {
         var response = `<p style="margin-top:100px;" class="text-center justfy-content-center">Não existem regitros para
@@ -190,5 +190,151 @@ function tabela(data) {
     </div>`;
 
         $("#user-info-tb-vendas").html(tabela + content + fim);
+    }
+}
+
+
+
+function tabelaTopDezProdutosAno(data) {
+
+    if (data.length == 0) {
+        var response = `<p style="margin-top:100px;" class="text-center justfy-content-center">Não existem regitros para
+        serem exbidos!
+    </p>`
+        $("#user-info-tb-produtos-ano").html(response);
+
+    } else {
+
+
+        var tabela = `  <div class="table-responsive">
+            <table class="table align-items-center "> <tbody>`;
+
+        var content = '';
+        data.forEach(element => {
+            content += `
+                <tr>
+                <td class="w-20">
+                <div class="d-flex px-2 py-1 align-items-center">
+
+
+                    <div class="ms-4">
+                        <p class="text-xs font-weight-bold mb-0">Produto</p>
+                        <h6 class="text-sm mb-0 text-center">`+ element.produto + `</h6>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="text-center">
+                    <p class="text-xs font-weight-bold mb-0">Quantidade</p>
+                    <h6 class="text-sm mb-0">
+                        `+ element.total_vendido.toLocaleString('pt-BR', {
+                minimumFractionDigits: 2
+            }) + `</h6>
+
+                </div>
+            </td>
+            <td class="align-middle text-sm">
+            <div class="col text-center">
+                <p class="text-xs font-weight-bold mb-0">Valor UN</p>
+                <h6 class="text-sm mb-0">`+ element.preco_venda.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }) + `
+                   </h6>
+            </div>
+        </td>
+            <td class="align-middle text-sm">
+                <div class="col text-center">
+                    <p class="text-xs font-weight-bold mb-0">Total</p>
+                    <h6 class="text-sm mb-0">`+ element.valor_total.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }) + `
+                       </h6>
+                </div>
+            </td>
+            </tr>
+              `;
+        });
+
+
+        var fim = `
+            </tbody>
+        </table>
+    </div>`;
+
+        $("#user-info-tb-produtos-ano").html(tabela + content + fim);
+    }
+}
+
+function tabelaTopDezProdutosDia(data) {
+
+    if (data.length == 0) {
+        var response = `<p style="margin-top:100px;" class="text-center justfy-content-center">Não existem regitros para
+        serem exbidos!
+    </p>`
+        $("#user-info-tb-produtos-dia").html(response);
+
+    } else {
+
+
+        var tabela = `  <div class="table-responsive">
+            <table class="table align-items-center "> <tbody>`;
+
+        var content = '';
+        data.forEach(element => {
+            content += `
+                <tr>
+                <td class="w-20">
+                <div class="d-flex px-2 py-1 align-items-center">
+
+
+                    <div class="ms-4">
+                        <p class="text-xs font-weight-bold mb-0">Produto</p>
+                        <h6 class="text-sm mb-0 text-center">`+ element.produto + `</h6>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="text-center">
+                    <p class="text-xs font-weight-bold mb-0">Quantidade</p>
+                    <h6 class="text-sm mb-0">
+                        `+ element.total_vendido.toLocaleString('pt-BR', {
+                minimumFractionDigits: 2
+            }) + `</h6>
+
+                </div>
+            </td>
+            <td class="align-middle text-sm">
+            <div class="col text-center">
+                <p class="text-xs font-weight-bold mb-0">Valor UN</p>
+                <h6 class="text-sm mb-0">`+ element.preco_venda.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }) + `
+                   </h6>
+            </div>
+        </td>
+            <td class="align-middle text-sm">
+                <div class="col text-center">
+                    <p class="text-xs font-weight-bold mb-0">Total</p>
+                    <h6 class="text-sm mb-0">`+ element.valor_total.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }) + `
+                       </h6>
+                </div>
+            </td>
+            </tr>
+              `;
+        });
+
+
+        var fim = `
+            </tbody>
+        </table>
+    </div>`;
+
+        $("#user-info-tb-produtos-dia").html(tabela + content + fim);
     }
 }

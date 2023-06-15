@@ -23,14 +23,14 @@ class VendaController extends Controller
     public function lista()
     {
 
-        return view($this->path . '.lista', ['venda' => $this->vendaRepositorio->lista()]);
+        return view($this->path . '.lista', ['venda' => $this->vendaRepositorio->lista(),'total_periodo_venda' => 0]);
     }
 
     public function buscarVenda(VendaRequest $req)
     {
 
         if ($busca = $this->vendaRepositorio->buscarVenda($req->input('data_inicio'), $req->input('data_fim'))) {
-            return view($this->path . '.lista', ['venda' => $busca]);
+            return view($this->path . '.lista', ['venda' => $busca,'total_periodo_venda' => 0]);
         }
         return redirect()->route('user-lista-vendas')->with('msg-error', 'Não foram encontrados registros!')->withInput();
     }
@@ -38,7 +38,7 @@ class VendaController extends Controller
     public function detalhesVenda($id)
     {
         if ($busca =  $this->vendaRepositorio->buscaVendaID($id)) {
-            return view($this->path . '.detalhes', ['venda' => $busca]);
+            return view($this->path . '.detalhes', ['venda' => $busca,'total_periodo_venda' => 0]);
         }
         return redirect()->route('user-lista-vendas')->with('msg-error', 'Não foram encontrados registros durante esse periodo!')->withInput();
     }
@@ -47,7 +47,7 @@ class VendaController extends Controller
     {
 
         if ($busca = $this->vendaRepositorio->buscarVendaFiltro($req->all())) {
-            return view($this->path . '.lista', ['venda' => $busca]);
+            return view($this->path . '.lista', ['venda' => $busca['busca'],'total_periodo_venda' => $busca['total_periodo']]);
         }
         return redirect()->route('user-lista-vendas')->with('msg-error', 'Não foram encontrados registros!')->withInput();
 

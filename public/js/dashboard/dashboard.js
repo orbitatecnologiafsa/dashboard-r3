@@ -1,5 +1,5 @@
 function nav_info(url) {
-    
+
     setInterval(() => {
         $(document).ready(function () {
             $.get(url, function (data) {
@@ -28,6 +28,8 @@ function nav_info(url) {
                     currency: 'BRL'
                 }));
                 $('#user-estoque-info').text(data.estoque.toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
                     minimumFractionDigits: 2
                 }));
 
@@ -72,7 +74,9 @@ function nav_info(url) {
                     currency: 'BRL'
                 }));
 
-                tabela(data.vendas_diaria)
+                tabelaVendasDiaria(data.vendas_diaria)
+                tabelaTopDezProdutosDia(data.top_produtos_dia)
+                tabelaTopDezProdutosAno(data.top_produtos_ano)
                 graficoLinha(url, "chart-line-vendas-qtd", JSON.parse(data.meses),
                     'Vendas', 'Vendas');
                 graficoLinha(url, "chart-line-vendas-valor", JSON.parse(data.valor),

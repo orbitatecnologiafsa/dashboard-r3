@@ -60,6 +60,7 @@ class VendaRepositorio
     {
 
         $dados = (object) $campos;
+        $total = 0;
         switch ($dados) {
             case !empty($dados->data_inicio) && !empty($dados->data_fim) && empty($dados->filtro_vendas) && !isset($dados->op_filtro_vendedor):
 
@@ -68,16 +69,28 @@ class VendaRepositorio
                     ->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)
                     ->where('total_nota', '!=', 0)
                     ->paginate(9);
-                return  count($busca) > 0 ? $busca :  false;
+                $total = $this->venda->whereBetween('data', [$dados->data_inicio . ' 00:00:00', $dados->data_fim . ' 23:00:00'])
+                    ->where('cnpj_cliente', HelperUtil::userInformation())
+                    ->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)
+                    ->where('total_nota', '!=', 0)->sum('total_nota');
+                $res = ['busca' => $busca, 'total_periodo' => $total];
+                return  count($busca) > 0 ? $res :  false;
                 break;
             case !empty($dados->data_inicio) && !empty($dados->data_fim) && !empty($dados->op_filtro_venda) && !empty($dados->filtro_vendas) && !isset($dados->op_filtro_vendedor):
-              $busca = $this->venda->whereBetween('data', [$dados->data_inicio . ' 00:00:00', $dados->data_fim . ' 23:00:00'])
+                $busca = $this->venda->whereBetween('data', [$dados->data_inicio . ' 00:00:00', $dados->data_fim . ' 23:00:00'])
                     ->where("{$dados->op_filtro_venda}", $dados->filtro_vendas)
                     ->where('cnpj_cliente', HelperUtil::userInformation())
                     ->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)
                     ->where('total_nota', '!=', 0)
                     ->paginate(9);
-                return  count($busca) > 0 ? $busca :  false;
+                $total = $this->venda->whereBetween('data', [$dados->data_inicio . ' 00:00:00', $dados->data_fim . ' 23:00:00'])
+                    ->where("{$dados->op_filtro_venda}", $dados->filtro_vendas)
+                    ->where('cnpj_cliente', HelperUtil::userInformation())
+                    ->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)
+                    ->where('total_nota', '!=', 0)
+                    ->sum('total_nota');
+                $res = ['busca' => $busca, 'total_periodo' => $total];
+                return  count($busca) > 0 ? $res :  false;
                 break;
             case !empty($dados->data_inicio) && !empty($dados->data_fim) && isset($dados->op_filtro_vendedor)  && !empty($dados->op_filtro_vendedor)  &&  empty($dados->filtro_vendas):
 
@@ -87,7 +100,14 @@ class VendaRepositorio
                     ->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)
                     ->where('total_nota', '!=', 0)
                     ->paginate(9);
-                return  count($busca) > 0 ? $busca :  false;
+                $total = $this->venda->whereBetween('data', [$dados->data_inicio . ' 00:00:00', $dados->data_fim . ' 23:00:00'])
+                    ->where("codvendedor", $dados->op_filtro_vendedor)
+                    ->where('cnpj_cliente', HelperUtil::userInformation())
+                    ->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)
+                    ->where('total_nota', '!=', 0)
+                    ->sum('total_nota');
+                    $res = ['busca' => $busca, 'total_periodo' => $total];
+                    return  count($busca) > 0 ? $res :  false;
                 break;
             case empty($dados->data_inicio) && empty($dados->data_fim) && !isset($dados->op_filtro_vendedor) && !empty($dados->filtro_vendas):
 
@@ -96,7 +116,13 @@ class VendaRepositorio
                     ->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)
                     ->where('total_nota', '!=', 0)
                     ->paginate(9);
-                return  count($busca) > 0 ? $busca :  false;
+                $total = $this->venda->where("{$dados->op_filtro_venda}", 'LIKE', '%' . $dados->filtro_vendas . '%')
+                ->where('cnpj_cliente', HelperUtil::userInformation())
+                ->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)
+                ->where('total_nota', '!=', 0)
+                ->sum('total_nota');
+                $res = ['busca' => $busca, 'total_periodo' => $total];
+                return  count($busca) > 0 ? $res :  false;
                 break;
             case empty($dados->data_inicio) && empty($dados->data_fim) && isset($dados->op_filtro_vendedor) && isset($dados->op_filtro_vendedor) && empty($dados->filtro_vendas) || !empty($dados->filtro_vendas):
                 $busca = $this->venda->where("codvendedor", 'LIKE', '%' . $dados->op_filtro_vendedor . '%')
@@ -104,10 +130,16 @@ class VendaRepositorio
                     ->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)
                     ->where('total_nota', '!=', 0)
                     ->paginate(9);
-                return  count($busca) > 0 ? $busca :  false;
+                $total = $this->venda->where("codvendedor", 'LIKE', '%' . $dados->op_filtro_vendedor . '%')
+                ->where('cnpj_cliente', HelperUtil::userInformation())
+                ->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)
+                ->where('total_nota', '!=', 0)
+                ->sum('total_nota');
+                $res = ['busca' => $busca, 'total_periodo' => $total];
+                return  count($busca) > 0 ? $res :  false;
                 break;
             default:
-               return false;
+                return false;
                 break;
         }
 

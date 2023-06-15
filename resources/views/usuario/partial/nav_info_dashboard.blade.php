@@ -7,7 +7,7 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Estoque</p>
+                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Estoque (valor total)</p>
                                 <h5 class="font-weight-bolder" id="user-estoque-info">
                                     <div class="spinner-border" role="status">
                                         <span class="visually-hidden">Loading...</span>
@@ -37,7 +37,7 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="numbers">
-                            <p class="text-sm mb-0 text-uppercase font-weight-bold">Vendas</p>
+                            <p class="text-sm mb-0 text-uppercase font-weight-bold">Vendas (diario)</p>
                             <h5 class="font-weight-bolder" id="user-venda-info">
                                 {{-- R$ {{ number_format($venda, 2, ',', '.') }} --}}
                                 <div class="spinner-border" role="status">

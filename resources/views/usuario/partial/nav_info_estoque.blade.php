@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="numbers">
-                            <p class="text-sm mb-0 text-uppercase font-weight-bold">Estoque</p>
+                            <p class="text-sm mb-0 text-uppercase font-weight-bold">Estoque (valor total)</p>
                             <h5 class="font-weight-bolder" id="user-estoque-info">
                                 <div class="spinner-border" role="status">
                                     <span class="visually-hidden">Loading...</span>

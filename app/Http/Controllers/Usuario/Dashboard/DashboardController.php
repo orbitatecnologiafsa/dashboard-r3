@@ -66,6 +66,8 @@ class DashboardController extends Controller
                 'forma_pagamento' => $this->dashboardRepositorio->formasPagamentoDiario(),
                 'vendas_diaria' => $this->dashboardRepositorio->vendaDiaria(),
                 'total_diario' => $this->dashboardRepositorio->contadorValorTotalDiario(),
+                'top_produtos_ano' => $this->dashboardRepositorio->topDezProdutoAno(),
+                'top_produtos_dia' => $this->dashboardRepositorio->topDezProdutoDia(),
             ]
         );
     }

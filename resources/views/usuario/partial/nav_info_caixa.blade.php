@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="numbers">
-                            <p class="text-sm mb-0 text-uppercase font-weight-bold">Caixa (valor bruto)</p>
+                            <p class="text-sm mb-0 text-uppercase font-weight-bold">Caixa (valor bruto Mensal)</p>
                             <h5 class="font-weight-bolder" id="user-caixa-info">
                                 <div class="spinner-border tetx-white" role="status">
                                     <span class="visually-hidden">Loading...</span>
@@ -32,11 +32,37 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="numbers">
-                            <p class="text-sm mb-0 text-uppercase font-weight-bold">Em Caixa</p>
+                            <p class="text-sm mb-0 text-uppercase font-weight-bold">Em Caixa (dinheiro)</p>
                             <h5 class="font-weight-bolder" id="user-caixa-info-atual">
                                 <div class="spinner-border tetx-white" role="status">
                                     <span class="visually-hidden">Loading...</span>
                                 </div>
+                            </h5>
+                            {{-- <p class="mb-0">
+            <span class="text-success text-sm font-weight-bolder">+55%</span>
+            since yesterday
+          </p> --}}
+                        </div>
+                    </div>
+                    <div class="col-4 text-end">
+                        <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                            <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+            <div class="card-body p-3">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="numbers">
+                            <p class="text-sm mb-0 text-uppercase font-weight-bold">Total por periodo</p>
+                            <h5 class="font-weight-bolder" id="">
+                               R$ {{ number_format($total_periodo_caixa,2,',','.')}}
                             </h5>
                             {{-- <p class="mb-0">
             <span class="text-success text-sm font-weight-bolder">+55%</span>

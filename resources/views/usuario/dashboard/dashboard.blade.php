@@ -73,7 +73,38 @@
 
 
                 </div>
+                <div class="card " style="margin-top: 20px;">
+                    <div class="card-header pb-0 p-3">
+                        <div class="d-flex justify-content-between">
+                            <h6 class="mb-2">Top 10 produtos mais vendidos no dia</h6>
+                        </div>
+                    </div>
+
+                    <div id="user-info-tb-produtos-dia">
+                        <span>
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                <div class="card " style="margin-top: 20px;">
+                    <div class="card-header pb-0 p-3">
+                        <div class="d-flex justify-content-between">
+                            <h6 class="mb-2">Top 10 produtos mais vendidos no ano</h6>
+                        </div>
+                    </div>
+
+                    <div id="user-info-tb-produtos-ano">
+                        <span>
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </span>
+                    </div>
+                </div>
             </div>
+
             {{-- card com as formas de pagamento --}}
             <div class="col-lg-4">
                 <div class="card">
@@ -241,11 +272,12 @@
             </div>
         </div>
 
+
         @include('tamplate.footer')
     </div>
 @endsection
 @push('javascript')
 <script src="{{ asset('js/grafico/grafico.js') }}"></script>
 <script src="{{ asset('js/dashboard/dashboard.js') }}"></script>
-       
+
 @endpush
