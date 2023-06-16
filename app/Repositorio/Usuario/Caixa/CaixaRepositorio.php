@@ -39,9 +39,19 @@ class CaixaRepositorio
             $busca = $this->caixa->where('codigo', 'LIKE', '%' . $codigo . '%')->OrWhere('codcaixa', 'LIKE', '%' . $codigo . '%')
                 ->where('codoperador', 'LIKE', '%' . $codigo . '%')->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->where('valor', '!=', 0)
                 ->paginate(5);
+
             $total = $this->caixa->where('codigo', 'LIKE', '%' . $codigo . '%')->OrWhere('codcaixa', 'LIKE', '%' . $codigo . '%')
                 ->where('codoperador', 'LIKE', '%' . $codigo . '%')->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->where('valor', '!=', 0)
                 ->sum('valor');
+            if(count($busca) == 0){
+                $busca = $this->caixa->where('codigo_venda', 'LIKE', '%' . $codigo . '%')->OrWhere('codcaixa', 'LIKE', '%' . $codigo . '%')
+                ->where('codigo_venda', 'LIKE', '%' . $codigo . '%')->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->where('valor', '!=', 0)
+                ->paginate(5);
+
+            $total = $this->caixa->where('codigo_venda', 'LIKE', '%' . $codigo . '%')->OrWhere('codcaixa', 'LIKE', '%' . $codigo . '%')
+                ->where('codigo_venda', 'LIKE', '%' . $codigo . '%')->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->where('valor', '!=', 0)
+                ->sum('valor');
+            }
         } else {
             $busca = $this->caixa->whereBetween('data', [$inicio . ' 00:00:00', $fim . ' 23:00:00'])->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->where('valor', '!=', 0)
                 ->paginate(9);

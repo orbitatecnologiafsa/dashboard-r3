@@ -243,7 +243,7 @@ class DashboardRepositorio
             ['valor' =>  'modelo_nf', 'campo' => 'Modelo de nota 65/55', 'id' => 'modelo_nf'],
             ['valor' =>  'codcaixa', 'campo' => 'Codigo caixa', 'id' => 'codcaixa'],
             ['valor' =>  'codvendedor', 'campo' => 'Codigo vendedor', 'id' => 'codvendedor'],
-            ['valor' =>  'codigo', 'campo' => 'Codigo sistema', 'id' => 'codigo'],
+            ['valor' =>  'codigo', 'campo' => 'Codigo nota', 'id' => 'codigo'],
             ['valor' =>  'codfilial', 'campo' => 'Codigo filial', 'id' => 'codfilial'],
             ['valor' => 'nome_vendedor', 'campo' => 'Nome Vendedor', 'id' => 'nome_vendedor']
         ];

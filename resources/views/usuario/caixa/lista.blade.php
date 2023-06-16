@@ -57,7 +57,7 @@
                                 Codigo (busca sem intervalo)
                                 <input type="text" class="form-control form-control-alternative" name="codigo_caixa"
                                     value="{{ request()->input('codigo_caixa') ?? old('codigo_caixa') }}" id="exampleFormControlInput1"
-                                    placeholder="sistema ou caixa ou operador">
+                                    placeholder="Codigo da nota ou caixa ou operador">
                             </div>
                         </div>
 
