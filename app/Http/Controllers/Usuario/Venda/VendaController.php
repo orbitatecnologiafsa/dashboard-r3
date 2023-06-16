@@ -38,7 +38,7 @@ class VendaController extends Controller
     public function detalhesVenda($id)
     {
         if ($busca =  $this->vendaRepositorio->buscaVendaID($id)) {
-            return view($this->path . '.detalhes', ['venda' => $busca,'total_periodo_venda' => 0]);
+            return view($this->path . '.detalhes', ['venda' => $busca['busca'],'produtos' => $busca['produtos']['busca'],'total_periodo_venda' => $busca['produtos']['total']]);
         }
         return redirect()->route('user-lista-vendas')->with('msg-error', 'Não foram encontrados registros durante esse periodo!')->withInput();
     }

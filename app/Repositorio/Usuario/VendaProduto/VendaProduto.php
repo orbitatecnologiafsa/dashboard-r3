@@ -20,7 +20,14 @@ class VendaProduto
     public function getListaProdutoByCodNota($nota)
     {
         $busca = [];
-        $busca = $this->vendaProduto->orderBy('qtde', 'desc')->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->where('total', '!=', 0)->where('cod_nota', $nota)->paginate(9);
-        return  count($busca) > 0 ? $busca :  false;
+        $res = [];
+        $busca = $this->vendaProduto->where('cod_nota', $nota)->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->orderBy('qtde', 'desc')->paginate(9);
+        $total = $this->vendaProduto->where('cod_nota', $nota)->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->sum('total');
+
+        $res = [
+            'busca' => $busca,
+            'total' => $total
+        ];
+        return  count($busca) > 0 ? $res :  ['busca' => [],'total'  => 0];
     }
 }

@@ -6,7 +6,7 @@ namespace App\Repositorio\Usuario\Venda;
 
 use App\Models\Venda;
 use App\Models\Vendedor;
-
+use App\Repositorio\Usuario\VendaProduto\VendaProduto;
 use App\Repositorio\Util\HelperUtil;
 use Illuminate\Support\Facades\DB;
 
@@ -16,11 +16,13 @@ class VendaRepositorio
     protected $database;
     protected $venda;
     protected $db;
+    protected $produtosVenda;
 
     public function __construct()
     {
         $this->venda = new Venda();
         $this->db = new DB();
+        $this->produtosVenda = new VendaProduto();
     }
 
 
@@ -46,14 +48,19 @@ class VendaRepositorio
     public function buscaVendaID($id)
     {
         $busca = '';
-
+        $produtos = '';
 
         if (!empty($id)) {
             $busca = $this->venda->where('id', $id)->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->where('total_nota', '!=', 0)
                 ->get()->first();
-        }
+            $produtos = $this->produtosVenda->getListaProdutoByCodNota($busca->codigo);
 
-        return  !empty($busca) ? $busca :  false;
+        }
+        $res = [
+            'busca' => $busca,
+            'produtos' => $produtos
+        ];
+        return  !empty($busca) ? $res :  false;
     }
 
     public function buscarVendaFiltro($campos)

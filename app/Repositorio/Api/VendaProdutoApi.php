@@ -28,13 +28,13 @@ class VendaProdutoApi
             $cnpj_loja = '';
             $cnpj_cliente = '';
             foreach ($vendaProdutos as $vp) {
-                $codigo = $vp['cod_nota'];
+                $codigo = $vp['cod_produto'];
                 $cnpj_loja = $vp['cnpj_loja'];
                 $cnpj_cliente = $vp['cnpj_cliente'];
                 $dadosVendaProd = [
-                    'cod_nota' => $codigo,
+                    'cod_nota' => $vp['cod_nota'],
                     'produto' => $vp['produto'],
-                    'cod_produto'=> $vp['cod_produto'],
+                    'cod_produto'=> $codigo,
                     'preco_venda'=> $vp['preco_venda'],
                     'preco_custo'=> $vp['preco_custo'],
                     'cod_nota'=> $vp['cod_nota'],
@@ -47,7 +47,7 @@ class VendaProdutoApi
                     'created_at' => $vp['created_at'],
                     'updated_at' => $vp['updated_at']
                 ];
-                if (VendaProduto::updateOrInsert(['cod_nota' => $codigo,'cnpj_loja' => $cnpj_loja,'cnpj_cliente'=>$cnpj_cliente],$dadosVendaProd) ){
+                if (VendaProduto::updateOrInsert(['cod_produto' => $codigo,'cnpj_loja' => $cnpj_loja,'cnpj_cliente'=>$cnpj_cliente],$dadosVendaProd) ){
                     $insert = true;
                 }
             }
