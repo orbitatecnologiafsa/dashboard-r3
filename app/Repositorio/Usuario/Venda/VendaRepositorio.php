@@ -49,10 +49,11 @@ class VendaRepositorio
     {
         $busca = '';
         $produtos = '';
-
+      
         if (!empty($id)) {
             $busca = $this->venda->where('id', $id)->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->where('total_nota', '!=', 0)
                 ->get()->first();
+
             $produtos = $this->produtosVenda->getListaProdutoByCodNota($busca->codigo);
 
         }

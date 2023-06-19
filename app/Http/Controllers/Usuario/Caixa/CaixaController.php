@@ -41,7 +41,8 @@ class CaixaController extends Controller
     public function detalhesCaixa($id)
     {
         if ($busca =  $this->caixaRepositorio->buscaCaixaID($id)) {
-            return view($this->path . '.detalhes', ['caixa' => $busca,'total_periodo_caixa' => 0]);
+
+            return view($this->path . '.detalhes', ['caixa' => $busca['busca'],'produtos' => $busca['produtos']['busca'],'total_periodo_caixa' => $busca['total']]);
         }
         return redirect()->route('user-lista-caixa')->with('msg-error', 'Não foram encontrados registros durante esse periodo!')->withInput();
     }

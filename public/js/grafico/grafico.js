@@ -108,6 +108,7 @@ function graficoLinha(url = '', id, dados = '', label, tipo = '', prefix = '') {
 function tabelaVendasDiaria(data) {
 
     if (data.length == 0) {
+        
         var response = `<p style="margin-top:100px;" class="text-center justfy-content-center">Não existem regitros para
         serem exbidos!
     </p>`

@@ -6,6 +6,7 @@ namespace App\Repositorio\Usuario\Caixa;
 
 use App\Models\Caixa;
 use App\Repositorio\Database\DatabaseRepositorio;
+use App\Repositorio\Usuario\VendaProduto\VendaProduto;
 use App\Repositorio\Util\HelperUtil;
 use Illuminate\Support\Facades\DB;
 
@@ -15,11 +16,13 @@ class CaixaRepositorio
     protected $database;
     protected $caixa;
     protected $db;
+    protected $produtos;
 
     public function __construct()
     {
         $this->caixa = new Caixa();
         $this->db = new DB();
+        $this->produtos = new VendaProduto();
     }
 
 
@@ -65,12 +68,20 @@ class CaixaRepositorio
     public function buscaCaixaID($id)
     {
         $busca = '';
+        $res = [];
+        $total = 0;
 
         if (!empty($id)) {
             $busca = $this->caixa->where('id', $id)->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->where('valor', '!=', 0)
                 ->get()->first();
+            $produtos = $this->produtos->getListaProdutoByCodNota($busca->codigo_venda);
+            $total = $this->caixa->where('id', $id)->where('cnpj_cliente', HelperUtil::userInformation())->where('cnpj_loja', HelperUtil::lojaInformation('cnpj_loja')[0]->cnpj_loja)->sum('valor');
         }
-
-        return  !empty($busca) ? $busca :  false;
+        $res = [
+            'busca' => $busca,
+            'produtos' => $produtos,
+            'total' => $total
+        ];
+        return  !empty($busca) ? $res :  false;
     }
 }
