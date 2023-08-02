@@ -56,5 +56,5 @@ jobs:
         with:
           app-name: 'orbitadashboard'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1DDD2A5516D249B2924A64143EB84CAF }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1E0DB8FC176142D095A3555833711621 }}
           package: .
