@@ -104,12 +104,20 @@
                 {
                     "name": "Dragonfly Development Inc.",
                     "email": "info@dflydev.com",
+<<<<<<< HEAD
                     "homepage": "http://dflydev.com"
+=======
+                    "homepage": "https://dflydev.com"
+>>>>>>> 973452d (replace do http pra https)
                 },
                 {
                     "name": "Beau Simensen",
                     "email": "beau@dflydev.com",
+<<<<<<< HEAD
                     "homepage": "http://beausimensen.com"
+=======
+                    "homepage": "https://beausimensen.com"
+>>>>>>> 973452d (replace do http pra https)
                 },
                 {
                     "name": "Carlos Frutos",
@@ -3001,7 +3009,11 @@
             "authors": [
                 {
                     "name": "PHP-FIG",
+<<<<<<< HEAD
                     "homepage": "http://www.php-fig.org/"
+=======
+                    "homepage": "https://www.php-fig.org/"
+>>>>>>> 973452d (replace do http pra https)
                 }
             ],
             "description": "Standard interfaces for event handling.",
@@ -3052,7 +3064,11 @@
             "authors": [
                 {
                     "name": "PHP-FIG",
+<<<<<<< HEAD
                     "homepage": "http://www.php-fig.org/"
+=======
+                    "homepage": "https://www.php-fig.org/"
+>>>>>>> 973452d (replace do http pra https)
                 }
             ],
             "description": "Common interface for HTTP clients",
@@ -3104,7 +3120,11 @@
             "authors": [
                 {
                     "name": "PHP-FIG",
+<<<<<<< HEAD
                     "homepage": "http://www.php-fig.org/"
+=======
+                    "homepage": "https://www.php-fig.org/"
+>>>>>>> 973452d (replace do http pra https)
                 }
             ],
             "description": "Common interfaces for PSR-7 HTTP message factories",
@@ -3158,7 +3178,11 @@
             "authors": [
                 {
                     "name": "PHP-FIG",
+<<<<<<< HEAD
                     "homepage": "http://www.php-fig.org/"
+=======
+                    "homepage": "https://www.php-fig.org/"
+>>>>>>> 973452d (replace do http pra https)
                 }
             ],
             "description": "Common interface for HTTP messages",
@@ -3336,11 +3360,19 @@
                 {
                     "name": "Justin Hileman",
                     "email": "justin@justinhileman.info",
+<<<<<<< HEAD
                     "homepage": "http://justinhileman.com"
                 }
             ],
             "description": "An interactive shell for modern PHP.",
             "homepage": "http://psysh.org",
+=======
+                    "homepage": "https://justinhileman.com"
+                }
+            ],
+            "description": "An interactive shell for modern PHP.",
+            "homepage": "https://psysh.org",
+>>>>>>> 973452d (replace do http pra https)
             "keywords": [
                 "REPL",
                 "console",
@@ -6086,7 +6118,11 @@
             "authors": [
                 {
                     "name": "Lars Moelleken",
+<<<<<<< HEAD
                     "homepage": "http://www.moelleken.org/"
+=======
+                    "homepage": "https://www.moelleken.org/"
+>>>>>>> 973452d (replace do http pra https)
                 }
             ],
             "description": "Portable ASCII library - performance optimized (ascii) string functions for php.",
@@ -6615,12 +6651,20 @@
                 {
                     "name": "Pádraic Brady",
                     "email": "padraic.brady@gmail.com",
+<<<<<<< HEAD
                     "homepage": "http://blog.astrumfutura.com"
+=======
+                    "homepage": "https://blog.astrumfutura.com"
+>>>>>>> 973452d (replace do http pra https)
                 },
                 {
                     "name": "Dave Marshall",
                     "email": "dave.marshall@atstsolutions.co.uk",
+<<<<<<< HEAD
                     "homepage": "http://davedevelopment.co.uk"
+=======
+                    "homepage": "https://davedevelopment.co.uk"
+>>>>>>> 973452d (replace do http pra https)
                 }
             ],
             "description": "Mockery is a simple yet flexible PHP mock object framework",
@@ -7730,7 +7774,11 @@
                 }
             ],
             "description": "Provides functionality to handle HHVM/PHP environments",
+<<<<<<< HEAD
             "homepage": "http://www.github.com/sebastianbergmann/environment",
+=======
+            "homepage": "https://www.github.com/sebastianbergmann/environment",
+>>>>>>> 973452d (replace do http pra https)
             "keywords": [
                 "Xdebug",
                 "environment",
@@ -7873,7 +7921,11 @@
                 }
             ],
             "description": "Snapshotting of global state",
+<<<<<<< HEAD
             "homepage": "http://www.github.com/sebastianbergmann/global-state",
+=======
+            "homepage": "https://www.github.com/sebastianbergmann/global-state",
+>>>>>>> 973452d (replace do http pra https)
             "keywords": [
                 "global state"
             ],

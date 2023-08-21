@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <svg width="177px" height="150px" viewBox="0 0 177 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+=======
+<svg width="177px" height="150px" viewBox="0 0 177 150" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
+>>>>>>> 973452d (replace do http pra https)
     <title>Logos</title>
     <defs>
         <linearGradient x1="67.9273487%" y1="40.3110476%" x2="40.6754218%" y2="81.641044%" id="linearGradient-1">
@@ -18,4 +22,8 @@
             <path d="M69.446952,55 L53,71.2982957 C63.7858387,81.9863246 63.7858387,99.3119711 53,110 L89,74.3557598 L69.446952,55 Z" id="Path" fill="url(#linearGradient-2)"></path>
         </g>
     </g>
+<<<<<<< HEAD
 </svg>
+=======
+</svg>
+>>>>>>> 973452d (replace do http pra https)
