@@ -54,11 +54,7 @@ return [
     |
     */
 
-<<<<<<< HEAD
     'url' => env('APP_URL', 'http://localhost'),
-=======
-    'url' => env('APP_URL', 'https://localhost'),
->>>>>>> 973452d (replace do http pra https)
 
     'asset_url' => env('ASSET_URL'),
 
