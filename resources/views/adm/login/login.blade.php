@@ -11,7 +11,7 @@
                             <div class="card-header pb-0 text-start">
                                 <h4 class="font-weight-bolder">Login</h4>
                                 <p class="mb-0">Entre com email e senha</p>
-                               
+
                             </div>
                             <div class="card-body">
                                 <form role="form" action="{{ route('adm-login-post') }}" method="POST">
@@ -60,7 +60,7 @@
                     <div
                         class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column">
                         <div class="position-relative  h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden"
-                            style="background-image: url('{{ asset('img/orbita-icon.png') }}');
+                            style="background-image: url('https://orbitadashboard.azurewebsites.net/img/orbita-icon.png');
         background-size: cover;">
                             {{-- <span class="mask  opacity-6"></span>
                             <h4 class="mt-5 text-white font-weight-bolder position-relative">"Orbita tecnologia"</h4>
