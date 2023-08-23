@@ -245,7 +245,7 @@
     </div>
 @endsection
 @push('javascript')
-<script src="https://orbitadashboard.azurewebsites.net/js/grafico/grafico.js"></script>
-<script src="https://orbitadashboard.azurewebsites.net/js/dashboard/dashboard.js"></script>
-
+<script src="{{ asset('js/grafico/grafico.js') }}"></script>
+<script src="{{ asset('js/dashboard/dashboard.js') }}"></script>
+       
 @endpush

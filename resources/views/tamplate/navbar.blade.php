@@ -9,7 +9,7 @@
     </nav>
     <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
       <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-        {{--
+        {{-- 
           se remover aparece mt grudado
           <div class="input-group">
           <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
@@ -46,7 +46,7 @@
               <a class="dropdown-item border-radius-md" href="javascript:;">
                 <div class="d-flex py-1">
                   <div class="my-auto">
-                    <img src="https://orbitadashboard.azurewebsites.net/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
+                    <img src="{{ asset('img/team-2.jpg')}}" class="avatar avatar-sm  me-3 ">
                   </div>
                   <div class="d-flex flex-column justify-content-center">
                     <h6 class="text-sm font-weight-normal mb-1">
