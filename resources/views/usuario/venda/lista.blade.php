@@ -142,7 +142,7 @@
                             <td>
                                 <div class="d-flex px-2 py-1">
                                     <div>
-                                        <img src="https://orbitadashboard.azurewebsites.net//img/img-default.png" class="avatar avatar-sm me-3">
+                                        <img src="https://orbitadashboard.azurewebsites.net/img/img-default.png" class="avatar avatar-sm me-3">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center">
                                         <h6 class="mb-0 text-xs">Codigo</h6>

@@ -9,8 +9,8 @@
 <script src="https://orbitadashboard.azurewebsites.net/js/dashboard/dashboard.js"></script>
 
 <script async defer>
-    nav_info("{{ route('user-ultimo-update")
-    // forma_pagamento("{{ route('user-grafico-info")
+    nav_info("{{ route('user-ultimo-update') }}")
+    // forma_pagamento("{{ route('user-grafico-info') }}")
 
 </script>
 
